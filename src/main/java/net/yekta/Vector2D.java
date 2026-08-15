@@ -2,10 +2,12 @@ package net.yekta;
 
 public record Vector2D(double x, double y) {
 
+    public static final Vector2D ZERO =  new Vector2D(0, 0);
+
     public double magnitude() {
         return Math.sqrt(x*x + y*y);
     }
-    public double magnitudeSquared() {
+    public double magnitudeSQR() {
         return x*x + y*y;
     }
     public Vector2D add(Vector2D other) {
@@ -29,5 +31,19 @@ public record Vector2D(double x, double y) {
         if(mag==0){return new Vector2D(0,0);}
         return new Vector2D(x/mag, y/mag);
     }
+
+    // Use for calculating the difference between position vectors.
+    public double distanceFrom(Vector2D other){
+       double dx = x-other.x;
+       double dy = y-other.y;
+       return Math.sqrt(dx*dx + dy*dy);
+    }
+    public double distanceFromSQR(Vector2D other){
+        double dx = x-other.x;
+        double dy = y-other.y;
+        return dx*dx + dy*dy;
+    }
+
+
 
 }
