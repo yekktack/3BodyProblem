@@ -10,15 +10,17 @@ public class SimulationLoop {
     public static final double G = 1.0; // I mean it's generally 6.67430e-11 but I am not dealing with astronomical masses here.
     public static final int TPS = 180;
     public static final double dt = 1/(double)TPS;
+    public static final double radiusOfEachBody = 1;
 
 
 
-
+    // Collision Checker
+    CollisionChecker collisionChecker = new CollisionChecker(this, radiusOfEachBody);
 
     // Bodies
-    Body a = new Body(5,0);
-    Body b = new Body(0,5);
-    Body c = new Body(5,5);
+    Body a = new Body(500,0);
+    Body b = new Body(0,500);
+    Body c = new Body(500,500);
 
     // Main loop
     public void begin(){
@@ -26,8 +28,9 @@ public class SimulationLoop {
         long t1 = System.nanoTime();
         double accumulator = 0.0;
         long t2;
+        boolean bussin = true;
 
-        while(true){
+        while(bussin){
 
             t2 = System.nanoTime();
 
@@ -45,9 +48,15 @@ public class SimulationLoop {
             }
 
             // bobRoss.draw();
+            collisionChecker.logSingleLine();
 
             // Letting the CPU take a breath for 1 millisecond.
             takeABreath();
+
+            if (collisionChecker.twoBodiesCollided())
+            {bussin = false;
+                System.out.println("Two Bodies Collided!");
+            }
 
         }
     }
