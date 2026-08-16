@@ -23,12 +23,12 @@ public record Vector2D(double x, double y) {
         return new Vector2D(x*scalar, y*scalar);
     }
     public Vector2D divide(double scalar) {
-        if(scalar==0){return new Vector2D(0,0);}
+        if(scalar==0){return Vector2D.ZERO;}
         return new Vector2D(x/scalar, y/scalar);
     }
     public Vector2D normalize(){
         double mag = magnitude();
-        if(mag==0){return new Vector2D(0,0);}
+        if(mag==0){return Vector2D.ZERO;}
         return new Vector2D(x/mag, y/mag);
     }
 
@@ -43,7 +43,6 @@ public record Vector2D(double x, double y) {
         double dy = y-other.y;
         return dx*dx + dy*dy;
     }
-
 
 
 }

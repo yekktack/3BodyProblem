@@ -1,9 +1,13 @@
 package net.yekta;
 
+import java.util.ArrayList;
+
 public class Body {
 
-    private static int number = 0;
+    public static int numberOfBodies = 0;
     public int index;
+
+    public static ArrayList<Body> bodies = new ArrayList<Body>();
 
     public final double mass;
 
@@ -11,14 +15,20 @@ public class Body {
     public Vector2D velocity;
     public Vector2D netForce;
 
+    public Vector2D getNetForce() {
+        return netForce;
+    }
+
+
 
     public Body(double x, double y, double mass){
 
+        bodies.add(this);
         this.mass = mass;
 
        // Assigns a new index to each object.
-        number++;
-        this.index = Body.number;
+        numberOfBodies++;
+        this.index = Body.numberOfBodies;
 
         this.position = new Vector2D(x,y);
         this.velocity = Vector2D.ZERO;
