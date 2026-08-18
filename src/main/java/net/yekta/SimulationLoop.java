@@ -18,9 +18,9 @@ public class SimulationLoop {
     CollisionChecker collisionChecker = new CollisionChecker(this, radiusOfEachBody);
 
     // Bodies
-    Body a = new Body(500,0);
-    Body b = new Body(0,500);
-    Body c = new Body(500,500);
+    Body a = new Body(50,0);
+    Body b = new Body(0,50);
+    Body c = new Body(50,50);
 
     // Main loop
     public void begin(){
